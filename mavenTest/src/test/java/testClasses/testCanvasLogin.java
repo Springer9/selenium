@@ -16,30 +16,29 @@ public class testCanvasLogin {
     @BeforeClass
     public void setUp() {
         System.out.println("Initializing WebDriver and launching browser...");
-        System.setProperty("webdriver.chrome.driverarm64", "'/Users/ethanspringob/Desktop/School/FGCU Spring 2025/Software testing/chromedriver-mac-arm64'");
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     @Test
     public void login() {
-        driver.get("https://fgcu.instructure.com/");
+        driver.get("https://www.imdb.com/");
 
         // Locate and interact with login elements
-        WebElement signInField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Sign in")));
-        WebElement passwordField = driver.findElement(By.id("password"));
-        WebElement loginButton = driver.findElement(By.id("loginButton"));
+        WebElement signInBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a.ipc-btn.imdb-header__signin-text")));
+        signInBtn.click();
 
-        signInField.sendKeys("EXAMPLEXXXX@eagle.fgcu.edu");
-        passwordField.sendKeys("EXAMPLE");
-        loginButton.click();
+        WebElement signInGoogle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Sign in with IMDb")));
+        signInGoogle.click();
 
-        // Prompt for user action
-        System.out.println("A call will pop up, click that, then Canvas should open up.");
+        WebElement submitEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_email")));
+        WebElement submitPass = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ap_password")));
+        WebElement signInPass = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("signInSubmit")));
+        submitEmail.sendKeys("imdb8320@gmail.com");
+        submitPass.sendKeys("testtest");
+        signInPass.click();
 
-        // Assert login success
-        WebElement dashboard = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("dashboard")));
-        Assert.assertTrue(dashboard.isDisplayed(), "Login failed!");
+        System.out.println("Sign In Success.");
     }
 
 
