@@ -2,7 +2,7 @@
 <suite name="SampleSuite">
     <test name="SampleTest">
         <classes>
-            <class name= "testClasses.testCanvasLogin" />
+            <class name= "testClasses.testIMDbLogin" />
         </classes>
     </test>
 </suite>
