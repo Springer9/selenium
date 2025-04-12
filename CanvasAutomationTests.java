@@ -50,7 +50,7 @@ public class CanvasAutomationTests {
         WebElement passwordField = driver.findElement(By.id("password"));
         WebElement loginButton = driver.findElement(By.id("loginButton"));
 
-        signInField.sendKeys("EXAMPLE@eagle.fgcu.edu");
+        signInField.sendKeys("EXAMPLEXXXX@eagle.fgcu.edu");
         passwordField.sendKeys("EXAMPLE");
         loginButton.click();
 
