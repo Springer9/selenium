@@ -1,26 +1,20 @@
 package testClasses;
 
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.annotations.*;
-import java.time.Duration;
-import java.time.Instant;
+import org.testng.annotations.Test;
 
-public class testMenu{
+public class MenuTest extends BaseTest {
 
-        @Test(priority = 2)
-        public void openMenu() {
-            new testIMDbLogin(); // Needed in case the test is run independently
+    @Test(priority = 2)
+    public void openMenu() {
+        initDriver(); // Needed in case the test is run independently
 
-            WebElement menuButton = wait.until(ExpectedConditions.elementToBeClickable(
-                    By.id("imdbHeader-navDrawerOpen")));
-            menuButton.click();
+        WebElement menuButton = wait.until(ExpectedConditions.elementToBeClickable(
+                By.id("imdbHeader-navDrawerOpen")));
+        menuButton.click();
 
-            System.out.println("Menu opened successfully.");
-        }
+        System.out.println("Menu opened successfully.");
     }
-
 }
