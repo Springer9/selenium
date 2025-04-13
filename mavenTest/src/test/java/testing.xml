@@ -3,7 +3,15 @@
 <suite name="IMDbTestSuite" verbose="1">
     <test name="IMDbTests">
         <classes>
-            <class name="testClasses.LoginTest"/>
+            <class name="testClasses.LoginAndProfileTests"/>
+                <methods>
+                    <!--> Essentially just lists the class methods</!-->
+                    <include name="loginToIMDb"/>
+                    <include name="changeLanguages"/>
+                    <include name="screenshot"/>
+                    <include name="uploadUserImage"/>
+                    <include name="changeBioThenRevertChangesToUser"/>
+                </methods>
             <class name="testClasses.MenuTest"/>
             <class name="testClasses.MoviesTest"/>
             <class name="testClasses.PopularMovies"/>
