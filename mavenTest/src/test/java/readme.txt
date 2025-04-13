@@ -1,1 +1,1 @@
-We need 40 methods in total (8 classes [or test cases] with 5 methods each)
+Reminder: We need 40 methods in total (8 classes [or test cases] with 5 methods each) and for the XML to provide a generated log (Canvas has a tutorial for it if any one wants to set that up).
