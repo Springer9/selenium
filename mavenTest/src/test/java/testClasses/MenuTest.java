@@ -10,8 +10,11 @@ public class MenuTest extends BaseTest {
 
     @Test(priority = 1)
     public void openMenu() throws InterruptedException {
-        initDriver(); // Needed in case the test is run independently
-        driver.get("https://www.imdb.com/");
+        //-------------------------------------------------------
+        // Needed in case the test is run independently   
+        //initDriver();
+        //driver.get("https://www.imdb.com/");
+        //-------------------------------------------------------
         WebElement menuButton = wait.until(ExpectedConditions.elementToBeClickable(
                 By.id("imdbHeader-navDrawerOpen")));
         menuButton.click();
