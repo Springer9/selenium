@@ -13,6 +13,13 @@
                     <include name="changeBioThenRevertChangesToUser"/>
                 </methods>
             <class name="testClasses.MenuTest"/>
+                <methods>
+                    <include name="openMenu"/>
+                    <include name="closeMenu"/>
+                    <include name="movieAndTVElements"/>
+                    <include name="awardsEventsAndWatchElements"/>
+                    <include name="celebsAndCommunityElements"/>
+                </methods>
             <class name="testClasses.MoviesTest"/>
             <class name="testClasses.PopularMovies"/>
         </classes>
