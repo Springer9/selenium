@@ -13,7 +13,11 @@
                     <include name="changeBioThenRevertChangesToUser"/>
                 </methods>
             </class>
-            <class name="testClasses.WatchlistTest"/>
+            
+            <class name="testClasses.WatchlistTest">
+                
+            </class>
+            
             <class name="testClasses.MenuTest">
                 <methods>
                     <include name="openMenu"/>
@@ -23,8 +27,29 @@
                     <include name="celebsAndCommunityElements"/>
                 </methods>
             </class>
-            <class name="testClasses.MoviesTest"/>
-            <class name="testClasses.PopularMovies"/>
+            
+            <class name="testClasses.MoviesTest">
+                <methods>
+                    
+                </methods>
+            </class>
+            
+            <class name="testClasses.PopularMovies">
+                <methods>
+                    
+                </methods>
+            </class>
+
+            
+            <class name="testClasses.TicketsTest">
+                <methods>
+                    <include name="visitTickets"/>
+                    <include name="changeZip"/>
+                    <include name="changeDate"/>
+                    <include name="viewTheaters"/>
+                    <include name="favoriteTheater"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
