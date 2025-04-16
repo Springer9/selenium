@@ -47,7 +47,7 @@ public class WatchlistTest extends BaseTest {
         nameField.sendKeys("Test_Watchlist");
 
         Thread.sleep(Duration.ofSeconds(2));
-        WebElement DescriptionField = driver.findElement(By.id("textarea__0"));
+        WebElement DescriptionField = driver.findElement(By.xpath("//html//body//div[2]//main//div//section//div//section//div//div[1]//section//div[2]//div//div//div//div//textarea"));
         DescriptionField.clear();
         DescriptionField.sendKeys("Test_Description");
         Thread.sleep(Duration.ofSeconds(2));
@@ -66,10 +66,8 @@ public class WatchlistTest extends BaseTest {
 
         Thread.sleep(Duration.ofSeconds(1));
 
-        Actions actions = new Actions(driver);
-        actions.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).build().perform();
-
         WebElement watchlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//html//body//div[2]//nav//div[2]//div[5]//a//span")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", watchlist);
         watchlist.click();
 
         Thread.sleep(Duration.ofSeconds(5));
@@ -81,9 +79,17 @@ public class WatchlistTest extends BaseTest {
     @Test(priority = 5)
     public void deleteList() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement listsbutton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//html//body//div[2]//main//div//section//div//section//div//div[2]//div[2]//div[2]//div//section[2]//div//div[1]//div//a//h3")));
-        listsbutton.click();
-        Thread.sleep(Duration.ofSeconds(10));
+        WebElement listsButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//html//body//div[2]//main//div//section//div//section//div//div[2]//div[2]//div[2]//div//section[2]//div//div[1]//div//a//h3")));
+        listsButton.click();
+
+        WebElement manageList = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//html//body//div[2]//main//div//section//div//section//div//div[1]//section//div[3]//ul//li[1]//div[3]//button")));
+        manageList.click();
+
+        WebElement deleteList = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//html//body//div[2]//main//div//section//div//section//div//div[1]//section//div[3]//ul//li[1]//div[3]//div//div//div//div[2]//ul//li[1]//span")));
+        deleteList.click();
+
+        WebElement confirmDelete = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//html//body//div[4]//div[2]//div//div[2]//div//div//div//button[2]//span")));
+        confirmDelete.click();
     }
 
 }
