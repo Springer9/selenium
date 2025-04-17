@@ -134,7 +134,7 @@ public class LoginAndProfileTests extends BaseTest {
 
         WebElement uploadButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-testid='upe-image-upload-prompt-save']//span[text()='Save']")));
         uploadButton.click();
-        Thread.sleep(2000);
+        Thread.sleep(4000);
     }
 
     @Test(priority = 5)
@@ -149,13 +149,13 @@ public class LoginAndProfileTests extends BaseTest {
         bioEditSubmit.click();
 
         //Now Clear
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         WebElement deleteImage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-testid='upe-image-delete']//span[text()='Delete image']")));
         deleteImage.click();
         WebElement deleteImageConfirmation = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-testid='prompt-saveButton']//span[text()='Delete']")));
         deleteImageConfirmation.click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         bioEditBtn.click();
         //FIND THE ELEMENTS AGAIN (THEY ARE STALE AFTER SUBMISSION)
