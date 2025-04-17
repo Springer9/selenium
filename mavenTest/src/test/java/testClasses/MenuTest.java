@@ -15,6 +15,7 @@ public class MenuTest extends BaseTest {
         //initDriver();
         //driver.get("https://www.imdb.com/");
         //-------------------------------------------------------
+        Thread.sleep(1000);
         WebElement menuButton = wait.until(ExpectedConditions.elementToBeClickable(
                 By.id("imdbHeader-navDrawerOpen")));
         menuButton.click();
