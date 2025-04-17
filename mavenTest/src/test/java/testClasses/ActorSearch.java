@@ -8,59 +8,84 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
 public class ActorSearch extends BaseTest {
 
     @Test(priority = 1)
-    public void findBradPittAndFightClub() {
+    public void searchAndOpenDenzelWashingtonProfile() {
         initDriver();
         driver.get("https://www.imdb.com/");
-
-        // Search for Brad Pitt
         WebElement searchBox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("suggestion-search")));
-        searchBox.sendKeys("Brad Pitt");
+        searchBox.sendKeys("Denzel Washington");
         searchBox.sendKeys(Keys.ENTER);
 
-        // Click Brad Pitt's profile link
         WebElement actorLink = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//a[contains(@href,'/name/nm0000093')]")));
+                By.xpath("//a[contains(@href,'/name/nm0000243')]")));
         actorLink.click();
+    }
 
-        // Scroll and search manually for Fight Club in the page
-        boolean fightClubFound = false;
-        for (int i = 0; i < 10; i++) {  // attempt scrolls to find it dynamically
-            List<WebElement> links = driver.findElements(By.xpath("//a[contains(@href, '/title/') and contains(text(), 'Fight Club')]"));
-            if (!links.isEmpty()) {
-                links.get(0).click();
-                fightClubFound = true;
-                break;
-            }
-            ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 500);");
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException ignored) {}
-        }
+    @Test(priority = 2)
+    public void validateActorName() {
+        WebElement nameHeader = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.cssSelector("h1[data-testid='hero__pageTitle']")));
+        Assert.assertTrue(nameHeader.getText().contains("Denzel Washington"), "Actor name does not match");
+    }
 
-        Assert.assertTrue(fightClubFound, "Fight Club link not found on Brad Pitt's profile page.");
+    @Test(priority = 3)
+    public void validateKnownForSection() {
+        WebElement knownFor = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//section[@data-testid='nm_flmg_kwn_for']")));
+        Assert.assertTrue(knownFor.isDisplayed(), "'Known For' section not found");
+    }
 
-        // Validate Fight Club movie page
-        WebElement fightClubTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h1")));
-        Assert.assertTrue(fightClubTitle.getText().toLowerCase().contains("fight club"), "Fight Club page did not load correctly");
+    @Test(priority = 4)
+    public void openKnownForMovie() {
+        WebElement knownForMovie = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//section[@data-testid='nm_flmg_kwn_for']//a[contains(@href,'/title/')]")));
+        knownForMovie.click();
+    }
 
-        // Scroll down to view description, director, and cast
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 1000);");
+    @Test(priority = 5)
+    public void validateMoviePageOpened() {
+        WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h1")));
+        Assert.assertTrue(title.isDisplayed(), "Movie title not displayed");
+    }
 
-        // Check Director
+    // ✅ Additional Related Tests
+
+    @Test(priority = 6)
+    public void validateMovieGenres() {
+        WebElement genres = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//div[@data-testid='genres']")));
+        Assert.assertTrue(genres.isDisplayed(), "Genres not found on movie page");
+    }
+
+    @Test(priority = 7)
+    public void validateDirectorOnMoviePage() {
         WebElement director = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//section[@data-testid='title-cast']//preceding::li[div//text()='Director']")));
-        System.out.println("Director: " + director.getText());
+                By.xpath("//li[@data-testid='title-pc-principal-credit']//a[contains(@href,'/name/')]")));
+        Assert.assertTrue(director.isDisplayed(), "Director information not found");
+    }
 
-        // Check Actors Section
+    @Test(priority = 8)
+    public void validateRatingOnMoviePage() {
+        WebElement rating = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//div[contains(@data-testid,'hero-rating-bar__aggregate-rating')]//span[contains(@class,'sc')]")));
+        Assert.assertTrue(rating.isDisplayed(), "Rating not visible");
+    }
+
+    @Test(priority = 9)
+    public void validateCastSection() {
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 1500);");
         WebElement castSection = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//section[@data-testid='title-cast']")));
-        Assert.assertTrue(castSection.isDisplayed(), "Cast section not visible");
+        Assert.assertTrue(castSection.isDisplayed(), "Cast section not found");
+    }
 
-        System.out.println("Fight Club cast section and director displayed successfully.");
+    @Test(priority = 10)
+    public void validateDidYouKnowTriviaSection() {
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 2000);");
+        WebElement triviaSection = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//section[@data-testid='DidYouKnow']")));
+        Assert.assertTrue(triviaSection.isDisplayed(), "'Did You Know' trivia section is missing");
     }
 }
