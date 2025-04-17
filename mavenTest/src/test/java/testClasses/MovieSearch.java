@@ -53,32 +53,39 @@ public class MovieSearch extends BaseTest {
 
     @Test(priority = 6)
     public void checkGenreTags() {
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 4500);");
         WebElement genre = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[@data-testid='genres']")));
+                By.xpath("//html//body//div[2]//main//div//section[1]//div//section//div//div[1]//section[8]//div[2]//ul[2]//li[2]//span")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", genre);
         Assert.assertTrue(genre.isDisplayed(), "Genres not visible");
     }
 
     @Test(priority = 7)
-    public void viewAllCastAndCrew() {
+    public void viewAllCastAndCrew() throws InterruptedException {
         WebElement castCrewLink = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.partialLinkText("All cast & crew")));
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", castCrewLink);
+        Thread.sleep(1000);
         castCrewLink.click();
         WebElement castList = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.className("cast_list")));
+                By.xpath("//html//body//div[2]//main//div//section//div//section//div//div[1]//section[3]//div[2]")));
         Assert.assertTrue(castList.isDisplayed(), "Cast list not loaded");
     }
 
     @Test(priority = 8)
-    public void checkWatchlistButton() {
+    public void checkWatchlistButton() throws InterruptedException {
         driver.navigate().back(); // Go back to movie page from cast page
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, -4500);");
         WebElement watchlistButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.cssSelector("div[data-testid='hero-rating-bar__watchlist-button']")));
+                By.xpath("//html//body//div[2]//main//div//section[1]//section//div[3]//section//section//div[3]//div[2]//div[2]//div[3]//div[2]//div//button[1]")));
         Assert.assertTrue(watchlistButton.isDisplayed(), "Watchlist button not found");
+        Thread.sleep(1500);
     }
 
     @Test(priority = 9)
     public void verifyDidYouKnowSection() {
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 2000);");
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 6000);");
         WebElement didYouKnow = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//section[@data-testid='DidYouKnow']")));
         Assert.assertTrue(didYouKnow.isDisplayed(), "'Did You Know' section not visible");
