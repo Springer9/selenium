@@ -50,7 +50,7 @@ public class ActorSearch extends BaseTest {
         Assert.assertTrue(title.isDisplayed(), "Movie title not displayed");
     }
 
-    // ✅ Additional Related Tests
+    // Additional Related Tests
 
     @Test(priority = 6)
     public void validateMovieGenres() {
