@@ -31,16 +31,18 @@ public class ActorSearch extends BaseTest {
     }
 
     @Test(priority = 3)
-    public void validateKnownForSection() {
+    public void validateKnownForSection() throws InterruptedException {
         WebElement knownFor = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//section[@data-testid='nm_flmg_kwn_for']")));
+                By.xpath("//div[@data-testid='nm_flmg_kwn_for']")));
         Assert.assertTrue(knownFor.isDisplayed(), "'Known For' section not found");
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 1500);");
+        Thread.sleep(2000);
     }
 
     @Test(priority = 4)
     public void openKnownForMovie() {
         WebElement knownForMovie = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//section[@data-testid='nm_flmg_kwn_for']//a[contains(@href,'/title/')]")));
+                By.xpath("//div[@data-testid='nm_kwn_for_0']//a[contains(@href,'/title/')]")));
         knownForMovie.click();
     }
 
@@ -50,12 +52,11 @@ public class ActorSearch extends BaseTest {
         Assert.assertTrue(title.isDisplayed(), "Movie title not displayed");
     }
 
-    // Additional Related Tests
-
     @Test(priority = 6)
     public void validateMovieGenres() {
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 4500);");
         WebElement genres = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[@data-testid='genres']")));
+                By.xpath("//li[@data-testid='storyline-genres']")));
         Assert.assertTrue(genres.isDisplayed(), "Genres not found on movie page");
     }
 
