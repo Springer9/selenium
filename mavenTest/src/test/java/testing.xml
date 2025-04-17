@@ -5,7 +5,6 @@
         <classes>
             <class name="testClasses.LoginAndProfileTests">
                 <methods>
-                    <!--> Essentially just lists the class methods</!-->
                     <include name="loginToIMDb"/>
                     <include name="changeLanguages"/>
                     <include name="screenshot"/>
@@ -13,11 +12,9 @@
                     <include name="changeBioThenRevertChangesToUser"/>
                 </methods>
             </class>
-            
-            <class name="testClasses.WatchlistTest">
-                
-            </class>
-            
+
+            <class name="testClasses.WatchlistTest"/>
+
             <class name="testClasses.MenuTest">
                 <methods>
                     <include name="openMenu"/>
@@ -27,20 +24,15 @@
                     <include name="celebsAndCommunityElements"/>
                 </methods>
             </class>
-            
+
             <class name="testClasses.MoviesTest">
                 <methods>
-                    
-                </methods>
-            </class>
-            
-            <class name="testClasses.PopularMovies">
-                <methods>
-                    
+                    <!-- Left empty intentionally -->
                 </methods>
             </class>
 
-            
+            <class name="testClasses.PopularMovies"/>
+
             <class name="testClasses.TicketsTest">
                 <methods>
                     <include name="visitTickets"/>
@@ -48,6 +40,35 @@
                     <include name="changeDate"/>
                     <include name="viewTheaters"/>
                     <include name="favoriteTheater"/>
+                </methods>
+            </class>
+
+            <class name="testClasses.MovieSearch">
+                <methods>
+                    <include name="searchAndOpenInceptionMovie"/>
+                    <include name="validateMovieTitle"/>
+                    <include name="validateMovieRating"/>
+                    <include name="validateDirectorName"/>
+                    <include name="checkReleaseYear"/>
+                    <include name="checkGenreTags"/>
+                    <include name="viewAllCastAndCrew"/>
+                    <include name="checkWatchlistButton"/>
+                    <include name="verifyDidYouKnowSection"/>
+                </methods>
+            </class>
+
+            <class name="testClasses.ActorSearch">
+                <methods>
+                    <include name="searchAndOpenDenzelWashingtonProfile"/>
+                    <include name="validateActorName"/>
+                    <include name="validateKnownForSection"/>
+                    <include name="openKnownForMovie"/>
+                    <include name="validateMoviePageOpened"/>
+                    <include name="validateMovieGenres"/>
+                    <include name="validateDirectorOnMoviePage"/>
+                    <include name="validateRatingOnMoviePage"/>
+                    <include name="validateCastSection"/>
+                    <include name="validateDidYouKnowTriviaSection"/>
                 </methods>
             </class>
         </classes>
