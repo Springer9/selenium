@@ -1,6 +1,7 @@
 package testClasses;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
@@ -8,6 +9,18 @@ import org.testng.annotations.Test;
 public class PopularMovies extends BaseTest {
 
     @Test(priority = 1)
+    public void openMenu() throws InterruptedException {
+        Thread.sleep(1000);
+        WebElement menuButton = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//*[@id='imdbHeader-navDrawerOpen"
+                )));
+        menuButton.click();
+
+        System.out.println("Menu opened successfully.");
+        Thread.sleep(2000);
+    }
+
+    @Test(priority = 2)
     public void openPopularMovies() {
         initDriver(); // Needed in case the test is run independently
         driver.get("https://www.imdb.com/");
@@ -19,8 +32,9 @@ public class PopularMovies extends BaseTest {
         System.out.println("Popular Movies opened successfully.");
     }
 
-    @Test(priority = 2)
+    @Test(priority = 3)
     public void openMovie() {
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 1500);");
         // Wait for the Minecraft movie link to be clickable and click it
         WebElement minecraftMovie = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//h3[text()='A Minecraft Movie']/ancestor::a")));
@@ -28,7 +42,7 @@ public class PopularMovies extends BaseTest {
         System.out.println("Minecraft movie page opened.");
     }
     
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void openPhotosTab() {
         // Wait and click on the "Photos" button by its visible text
         WebElement photosButton = wait.until(ExpectedConditions.elementToBeClickable(
@@ -38,7 +52,7 @@ public class PopularMovies extends BaseTest {
         System.out.println("Photos tab opened.");
     }    
     
-    @Test(priority = 4)
+    @Test(priority = 5)
     public void closePhotoViewer() {
         // Wait for and click the "Close" link to exit the photo gallery
         WebElement closeButton = wait.until(ExpectedConditions.elementToBeClickable(
@@ -48,7 +62,7 @@ public class PopularMovies extends BaseTest {
         System.out.println("Photo viewer closed.");
     }
     
-    @Test(priority = 5)
+    @Test(priority = 6)
     public void clickShareButton() {
         // Wait for and click the "Share on social media" button
         WebElement shareButton = wait.until(ExpectedConditions.elementToBeClickable(
@@ -60,4 +74,3 @@ public class PopularMovies extends BaseTest {
 
     
 }
-    
