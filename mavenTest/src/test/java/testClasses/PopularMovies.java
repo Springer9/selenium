@@ -32,11 +32,12 @@ public class PopularMovies extends BaseTest {
     }
 
     @Test(priority = 3)
-    public void openMovie() {
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 1500);");
-        // Wait for the Minecraft movie link to be clickable and click it
+    public void openMovie() throws InterruptedException {
         WebElement minecraftMovie = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//h3[text()='A Minecraft Movie']/ancestor::a")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", minecraftMovie);
+        Thread.sleep(1000);
+        // Wait for the Minecraft movie link to be clickable and click it
         minecraftMovie.click();
         System.out.println("Minecraft movie page opened.");
     }
@@ -63,13 +64,15 @@ public class PopularMovies extends BaseTest {
     }
 
     @Test(priority = 6)
-    public void clickShareButton() {
+    public void clickShareButton() throws InterruptedException {
         // Wait for and click the "Share on social media" button
         WebElement shareButton = wait.until(ExpectedConditions.elementToBeClickable(
                 By.cssSelector("button[data-testid='share-button']")));
         shareButton.click();
 
         System.out.println("Share on social media button clicked.");
+        driver.navigate().refresh();
+        Thread.sleep(500);
     }
 
 
